@@ -1,0 +1,23 @@
+type User {
+  id: ID! @id
+  name: String!
+  email: String! @unique
+  posts: [Post!]!
+  comments: [Comment!]!
+}
+
+type Post {
+  id: ID! @id
+  title: String!
+  body: String!
+  published: Boolean!
+  author: User! @relation(link: INLINE)
+  comments: [Comment!]!
+}
+
+type Comment {
+  id: ID! @id
+  text: String!
+  post: Post! @relation(link: INLINE)
+  author: User! @relation(link: INLINE)
+}
